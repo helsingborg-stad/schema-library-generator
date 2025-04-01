@@ -30,8 +30,11 @@ class GenerateCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $output->writeln('Generating package code...');
+        $localRoot = getcwd();
+        $localRoot = realpath($localRoot);
+        $localRoot = str_replace('\\', '/', $localRoot);
 
-        $generator = new PackageGenerator($input->getArgument('directory'));
+        $generator = new PackageGenerator($localRoot, $input->getArgument('directory'));
 
         $definitions = new Definitions($this->getDefinitionSources($input));
 

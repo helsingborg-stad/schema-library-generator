@@ -11,6 +11,9 @@ class Filesystem
 {
     /** @var \League\Flysystem\Filesystem */
     protected $flysystem;
+    
+    /** @var \League\Flysystem\Filesystem */
+    protected $flysystemLocal;
 
     /** @var \Spatie\SchemaOrg\Generator\Writer\Template */
     protected $contractTemplate;
@@ -27,10 +30,13 @@ class Filesystem
     /** @var \Spatie\SchemaOrg\Generator\Writer\Template */
     protected $multiTypedEntityClassTemplate;
 
-    public function __construct(string $root, private string $targetDirectory)
+    public function __construct(string $root, string $localRoot, private string $targetDirectory)
     {
         $adapter         = new LocalFilesystemAdapter($root);
         $this->flysystem = new Flysystem($adapter);
+        
+        $adapterLocal         = new LocalFilesystemAdapter($localRoot);
+        $this->flysystemLocal = new Flysystem($adapterLocal);
 
         $this->contractTemplate              = new Template('Contract.php.twig');
         $this->typeTemplate                  = new Template('Type.php.twig');
@@ -41,8 +47,8 @@ class Filesystem
 
     public function clear()
     {
-        $this->flysystem->deleteDirectory($this->targetDirectory);
-        $this->flysystem->createDirectory($this->targetDirectory);
+        $this->flysystemLocal->deleteDirectory($this->targetDirectory);
+        $this->flysystemLocal->createDirectory($this->targetDirectory);
     }
 
     public function cloneStaticFiles()
@@ -54,7 +60,7 @@ class Filesystem
                 continue;
             }
 
-            $this->flysystem->write(
+            $this->flysystemLocal->write(
                 str_replace('generator/templates/static', $this->targetDirectory, $file['path']),
                 $this->flysystem->read($file['path'])
             );
@@ -63,12 +69,12 @@ class Filesystem
 
     public function createType(Type $type)
     {
-        $this->flysystem->write(
+        $this->flysystemLocal->write(
             "{$this->targetDirectory}/Contracts/{$type->className}Contract.php",
             $this->contractTemplate->render(['type' => $type])
         );
 
-        $this->flysystem->write(
+        $this->flysystemLocal->write(
             "{$this->targetDirectory}/{$type->className}.php",
             $this->typeTemplate->render(['type' => $type])
         );
@@ -76,17 +82,17 @@ class Filesystem
 
     public function createBuilderClass(TypeCollection $types)
     {
-        $this->flysystem->write(
+        $this->flysystemLocal->write(
             "{$this->targetDirectory}/Schema.php",
             $this->builderClassTemplate->render(['types' => $types->toArray()])
         );
 
-        $this->flysystem->write(
+        $this->flysystemLocal->write(
             "{$this->targetDirectory}/Graph.php",
             $this->graphClassTemplate->render(['types' => $types->toArray()])
         );
 
-        $this->flysystem->write(
+        $this->flysystemLocal->write(
             "{$this->targetDirectory}/MultiTypedEntity.php",
             $this->multiTypedEntityClassTemplate->render(['types' => $types->toArray()])
         );
