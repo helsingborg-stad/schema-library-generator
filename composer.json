@@ -59,7 +59,7 @@
         "test": "@php vendor/bin/pest"
     },
     "bin": [
-        "bin/generate-schema-library"
+        "generate"
     ],
     "version": "0.1.2"
 }
