@@ -60,5 +60,6 @@
     },
     "bin": [
         "bin/generate-schema-library"
-    ]
+    ],
+    "version": "0.1.0"
 }
