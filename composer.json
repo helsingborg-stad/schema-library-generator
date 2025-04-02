@@ -52,8 +52,8 @@
         "sort-packages": true
     },
     "scripts": {
-        "lint": "vendor/bin/phpcs",
-        "fix": "vendor/bin/phpcbf",
+        "lint": "vendor/bin/phpcs ./generator",
+        "fix": "vendor/bin/phpcbf ./generator",
         "generate": "@php ./generate.php",
         "test": "@php vendor/bin/pest"
     },

@@ -8,14 +8,14 @@ The generator is designed to create a types package for working with [Schema.org
 You can install the package via composer:
 
 ```bash
-composer require --dev spatie/schema-org-types
+composer require --dev helsingborg-stad/schema-library-generator
 ```
 ## Usage
 You can use the package to generate a types package for your project. The generator will create a set of classes that represent the Schema.org types, making it easier to work with structured data.
 ### Generating the Types Package
 To generate the types package, you can use the following command:
 
+#### Generate inside your project
 ```bash
-vendor/bin/generate-schema-library <directory>
+vendor/bin/generate <output-directory>
 ```
-
