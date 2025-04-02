@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\SchemaOrg\Generator;
+namespace SchemaOrg\Generator;
 
 class Constant
 {

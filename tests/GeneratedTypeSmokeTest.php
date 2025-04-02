@@ -1,10 +1,10 @@
 <?php
 
-namespace Spatie\SchemaOrg\Tests;
+namespace SchemaOrg\Tests;
 
-use Spatie\SchemaOrg\LocalBusiness;
-use Spatie\SchemaOrg\Schema;
-use Spatie\SchemaOrg\Type;
+use SchemaOrg\LocalBusiness;
+use SchemaOrg\Schema;
+use SchemaOrg\Type;
 
 it('is initializable', function () {
     expect(new LocalBusiness())->toBeInstanceOf(Type::class);

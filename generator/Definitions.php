@@ -1,10 +1,10 @@
 <?php
 
-namespace Spatie\SchemaOrg\Generator;
+namespace SchemaOrg\Generator;
 
 use Illuminate\Support\Collection;
 use OutOfBoundsException;
-use Spatie\SchemaOrg\Generator\Parser\JsonLdParser;
+use SchemaOrg\Generator\Parser\JsonLdParser;
 
 class Definitions
 {

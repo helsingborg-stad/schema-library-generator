@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\SchemaOrg;
+namespace SchemaOrg;
 
 use ArrayAccess;
 use BadMethodCallException;
@@ -8,9 +8,9 @@ use Closure;
 use JsonSerializable;
 use ReflectionClass;
 use ReflectionNamedType;
-use Spatie\SchemaOrg\Exceptions\InvalidType;
-use Spatie\SchemaOrg\Exceptions\TypeAlreadyInGraph;
-use Spatie\SchemaOrg\Exceptions\TypeNotInGraph;
+use SchemaOrg\Exceptions\InvalidType;
+use SchemaOrg\Exceptions\TypeAlreadyInGraph;
+use SchemaOrg\Exceptions\TypeNotInGraph;
 
 /**
 {% for type in types %}
@@ -39,8 +39,8 @@ class Graph implements Type, ArrayAccess, JsonSerializable
     }
 
     /**
-     * This overloads all \Spatie\SchemaOrg\Schema construction methods.
-     * You can call them the same like on the \Spatie\SchemaOrg\Schema class.
+     * This overloads all \SchemaOrg\Schema construction methods.
+     * You can call them the same like on the \SchemaOrg\Schema class.
      * But you can also use the extended signatures.
      *
      * Graph::organisation(): Organisation
@@ -48,7 +48,7 @@ class Graph implements Type, ArrayAccess, JsonSerializable
      * Graph::organisation(function(Organisation $organisation, Graph $graph) {}): Graph
      * Graph::organisation('spatie', function(Organisation $organisation, Graph $graph) {}): Graph
      *
-     * @see \Spatie\SchemaOrg\Schema
+     * @see \SchemaOrg\Schema
      *
      * @param string $method
      * @param array $arguments

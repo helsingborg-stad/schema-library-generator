@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\SchemaOrg\Tests;
+namespace SchemaOrg\Tests;
 
 use GrahamCampbell\Analyzer\AnalysisTrait;
 use PHPUnit\Framework\TestCase;

@@ -1,9 +1,9 @@
 <?php
 
-namespace Spatie\SchemaOrg\Generator\Console;
+namespace SchemaOrg\Generator\Console;
 
-use Spatie\SchemaOrg\Generator\Definitions;
-use Spatie\SchemaOrg\Generator\PackageGenerator;
+use SchemaOrg\Generator\Definitions;
+use SchemaOrg\Generator\PackageGenerator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;

@@ -1,8 +1,8 @@
 <?php
 
-namespace Spatie\SchemaOrg\Generator\Parser\Tasks;
+namespace SchemaOrg\Generator\Parser\Tasks;
 
-use Spatie\SchemaOrg\Generator\Constant;
+use SchemaOrg\Generator\Constant;
 
 class ParseConstant extends Task
 {

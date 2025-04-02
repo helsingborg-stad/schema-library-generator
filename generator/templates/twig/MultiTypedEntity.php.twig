@@ -1,15 +1,15 @@
 <?php
 
-namespace Spatie\SchemaOrg;
+namespace SchemaOrg;
 
 use BadMethodCallException;
 use Closure;
 use JsonSerializable;
 use ReflectionClass;
 use ReflectionNamedType;
-use Spatie\SchemaOrg\Exceptions\InvalidType;
-use Spatie\SchemaOrg\Exceptions\TypeAlreadyInMultiTypedEntity;
-use Spatie\SchemaOrg\Exceptions\TypeNotInMultiTypedEntity;
+use SchemaOrg\Exceptions\InvalidType;
+use SchemaOrg\Exceptions\TypeAlreadyInMultiTypedEntity;
+use SchemaOrg\Exceptions\TypeNotInMultiTypedEntity;
 
 /**
 {% for type in types %}
@@ -25,14 +25,14 @@ class MultiTypedEntity implements Type, JsonSerializable
     protected $nonce = '';
 
     /**
-     * This overloads all \Spatie\SchemaOrg\Schema construction methods.
-     * You can call them the same like on the \Spatie\SchemaOrg\Schema class.
+     * This overloads all \SchemaOrg\Schema construction methods.
+     * You can call them the same like on the \SchemaOrg\Schema class.
      * But you can also use the extended signatures.
      *
      * MultiTypedEntity::organisation(): Organisation
      * MultiTypedEntity::organisation(function(Organisation $organisation, MultiTypedEntity $mte) {}): MultiTypedEntity
      *
-     * @see \Spatie\SchemaOrg\Schema
+     * @see \SchemaOrg\Schema
      *
      * @param string $method
      * @param array $arguments

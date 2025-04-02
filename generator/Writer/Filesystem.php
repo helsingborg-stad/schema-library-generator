@@ -1,11 +1,11 @@
 <?php
 
-namespace Spatie\SchemaOrg\Generator\Writer;
+namespace SchemaOrg\Generator\Writer;
 
 use League\Flysystem\Filesystem as Flysystem;
 use League\Flysystem\Local\LocalFilesystemAdapter;
-use Spatie\SchemaOrg\Generator\Type;
-use Spatie\SchemaOrg\Generator\TypeCollection;
+use SchemaOrg\Generator\Type;
+use SchemaOrg\Generator\TypeCollection;
 
 class Filesystem
 {
@@ -15,19 +15,19 @@ class Filesystem
     /** @var \League\Flysystem\Filesystem */
     protected $flysystemLocal;
 
-    /** @var \Spatie\SchemaOrg\Generator\Writer\Template */
+    /** @var \SchemaOrg\Generator\Writer\Template */
     protected $contractTemplate;
 
-    /** @var \Spatie\SchemaOrg\Generator\Writer\Template */
+    /** @var \SchemaOrg\Generator\Writer\Template */
     protected $typeTemplate;
 
-    /** @var \Spatie\SchemaOrg\Generator\Writer\Template */
+    /** @var \SchemaOrg\Generator\Writer\Template */
     protected $builderClassTemplate;
 
-    /** @var \Spatie\SchemaOrg\Generator\Writer\Template */
+    /** @var \SchemaOrg\Generator\Writer\Template */
     protected $graphClassTemplate;
 
-    /** @var \Spatie\SchemaOrg\Generator\Writer\Template */
+    /** @var \SchemaOrg\Generator\Writer\Template */
     protected $multiTypedEntityClassTemplate;
 
     public function __construct(string $root, string $localRoot, private string $targetDirectory)

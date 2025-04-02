@@ -1,8 +1,8 @@
 <?php
 
-namespace Spatie\SchemaOrg\Generator\Parser\Tasks;
+namespace SchemaOrg\Generator\Parser\Tasks;
 
-use Spatie\SchemaOrg\Generator\Type;
+use SchemaOrg\Generator\Type;
 
 class ParseType extends Task
 {

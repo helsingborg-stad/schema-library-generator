@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\SchemaOrg\Generator\Parser;
+namespace SchemaOrg\Generator\Parser;
 
 use Illuminate\Support\Collection;
 

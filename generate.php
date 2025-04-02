@@ -9,6 +9,6 @@ if(isset($GLOBALS['_composer_autoload_path'])) {
     require __DIR__.'/../../autoload.php';
 }
 
-$application = new Spatie\SchemaOrg\Generator\Console\Application();
+$application = new SchemaOrg\Generator\Console\Application();
 
 $application->run();

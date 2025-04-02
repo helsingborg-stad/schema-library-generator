@@ -1,8 +1,8 @@
 <?php
 
-namespace Spatie\SchemaOrg\Generator\Parser\Tasks;
+namespace SchemaOrg\Generator\Parser\Tasks;
 
-use Spatie\SchemaOrg\Generator\Property;
+use SchemaOrg\Generator\Property;
 
 class ParseProperty extends Task
 {

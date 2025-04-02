@@ -1,9 +1,9 @@
 <?php
 
-namespace Spatie\SchemaOrg\Generator;
+namespace SchemaOrg\Generator;
 
-use Spatie\SchemaOrg\Generator\Parser\DefinitionParser;
-use Spatie\SchemaOrg\Generator\Writer\Filesystem;
+use SchemaOrg\Generator\Parser\DefinitionParser;
+use SchemaOrg\Generator\Writer\Filesystem;
 
 class PackageGenerator
 {

@@ -36,12 +36,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\SchemaOrg\\Generator\\": "generator"
+            "SchemaOrg\\Generator\\": "generator"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\SchemaOrg\\Tests\\": "tests"
+            "SchemaOrg\\Tests\\": "tests"
         }
     },
     "config": {

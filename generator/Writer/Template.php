@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\SchemaOrg\Generator\Writer;
+namespace SchemaOrg\Generator\Writer;
 
 use Twig\Environment as TwigEnvironment;
 use Twig\Loader\FilesystemLoader;

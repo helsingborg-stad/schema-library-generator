@@ -1,15 +1,15 @@
 <?php
 
-namespace Spatie\SchemaOrg\Generator\Parser;
+namespace SchemaOrg\Generator\Parser;
 
-use Spatie\SchemaOrg\Generator\Constant;
-use Spatie\SchemaOrg\Generator\Definitions;
-use Spatie\SchemaOrg\Generator\Parser\Tasks\ParseConstant;
-use Spatie\SchemaOrg\Generator\Parser\Tasks\ParseProperty;
-use Spatie\SchemaOrg\Generator\Parser\Tasks\ParseType;
-use Spatie\SchemaOrg\Generator\Property;
-use Spatie\SchemaOrg\Generator\Type;
-use Spatie\SchemaOrg\Generator\TypeCollection;
+use SchemaOrg\Generator\Constant;
+use SchemaOrg\Generator\Definitions;
+use SchemaOrg\Generator\Parser\Tasks\ParseConstant;
+use SchemaOrg\Generator\Parser\Tasks\ParseProperty;
+use SchemaOrg\Generator\Parser\Tasks\ParseType;
+use SchemaOrg\Generator\Property;
+use SchemaOrg\Generator\Type;
+use SchemaOrg\Generator\TypeCollection;
 
 class DefinitionParser
 {

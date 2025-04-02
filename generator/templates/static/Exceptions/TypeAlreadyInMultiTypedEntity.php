@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\SchemaOrg\Exceptions;
+namespace SchemaOrg\Exceptions;
 
 use InvalidArgumentException;
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace Spatie\SchemaOrg;
+namespace SchemaOrg;
 
 use ArrayAccess;
 use DateTime;
 use DateTimeInterface;
 use JsonSerializable;
 use ReflectionClass;
-use Spatie\SchemaOrg\Exceptions\InvalidProperty;
+use SchemaOrg\Exceptions\InvalidProperty;
 
 abstract class BaseType implements Type, ArrayAccess, JsonSerializable
 {

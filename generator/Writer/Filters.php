@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\SchemaOrg\Generator\Writer;
+namespace SchemaOrg\Generator\Writer;
 
 class Filters
 {

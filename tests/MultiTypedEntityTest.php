@@ -1,10 +1,10 @@
 <?php
 
-namespace Spatie\SchemaOrg\Tests;
+namespace SchemaOrg\Tests;
 
-use Spatie\SchemaOrg\MultiTypedEntity;
-use Spatie\SchemaOrg\Product;
-use Spatie\SchemaOrg\Schema;
+use SchemaOrg\MultiTypedEntity;
+use SchemaOrg\Product;
+use SchemaOrg\Schema;
 
 it('can render empty', function () {
     $mte = new MultiTypedEntity();

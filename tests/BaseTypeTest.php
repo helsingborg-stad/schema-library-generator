@@ -1,12 +1,12 @@
 <?php
 
-namespace Spatie\SchemaOrg\Tests;
+namespace SchemaOrg\Tests;
 
 use DateTime;
-use Spatie\SchemaOrg\BaseType;
-use Spatie\SchemaOrg\Exceptions\InvalidProperty;
-use Spatie\SchemaOrg\Product;
-use Spatie\SchemaOrg\PropertyValue;
+use SchemaOrg\BaseType;
+use SchemaOrg\Exceptions\InvalidProperty;
+use SchemaOrg\Product;
+use SchemaOrg\PropertyValue;
 
 it('has a default context', function () {
     $type = new DummyType();
