@@ -4,6 +4,8 @@ namespace SchemaOrg\Generator\Writer;
 
 class Filters
 {
+    public static string $organization = 'SchemaOrg';
+
     public static function doc($text, array $options = []): string
     {
         $indentation    = $options[0] ?? 0;
@@ -59,7 +61,9 @@ class Filters
                 return $type;
             }
 
-            return "\\Spatie\\SchemaOrg\\Contracts\\{$baseType}Contract" . ($isArray ? '[]' : '');
+            $organization = self::$organization;
+
+            return "\\{$organization}\\Contracts\\{$baseType}Contract" . ($isArray ? '[]' : '');
         }, $ranges));
     }
 

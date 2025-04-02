@@ -1,10 +1,10 @@
 <?php
 
-namespace SchemaOrg;
+namespace {{ organization }};
 
-use \SchemaOrg\Contracts\{{ type.className }}Contract;
+use \{{ organization }}\Contracts\{{ type.className }}Contract;
 {% for parent in type.parents %}
-use \SchemaOrg\Contracts\{{ parent }}Contract;
+use \{{ organization }}\Contracts\{{ parent }}Contract;
 {% endfor %}
 
 /**

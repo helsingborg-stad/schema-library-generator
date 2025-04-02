@@ -17,5 +17,5 @@ To generate the types package, you can use the following command:
 
 #### Generate inside your project
 ```bash
-vendor/bin/generate <output-directory>
+vendor/bin/generate --organization -o 'Example\\Organization' <output-directory>
 ```

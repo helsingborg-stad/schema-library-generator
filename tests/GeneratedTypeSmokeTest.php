@@ -1,10 +1,10 @@
 <?php
 
-namespace SchemaOrg\Tests;
+namespace SchemaOrg\Generated\Tests;
 
-use SchemaOrg\LocalBusiness;
-use SchemaOrg\Schema;
-use SchemaOrg\Type;
+use SchemaOrg\Generated\LocalBusiness;
+use SchemaOrg\Generated\Schema;
+use SchemaOrg\Generated\Type;
 
 it('is initializable', function () {
     expect(new LocalBusiness())->toBeInstanceOf(Type::class);

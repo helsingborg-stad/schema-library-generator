@@ -41,7 +41,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "SchemaOrg\\Tests\\": "tests"
+            "SchemaOrg\\Tests\\": "tests",
+            "SchemaOrg\\Generated\\": ".generated"
         }
     },
     "config": {
@@ -54,7 +55,7 @@
     "scripts": {
         "lint": "vendor/bin/phpcs ./generator",
         "fix": "vendor/bin/phpcbf ./generator",
-        "generate": "@php ./generate.php",
+        "generate": "@php ./generate.php -o 'SchemaOrg\\Generated' ./.generated",
         "test": "@php vendor/bin/pest"
     },
     "bin": [

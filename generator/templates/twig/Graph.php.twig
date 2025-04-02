@@ -1,6 +1,6 @@
 <?php
 
-namespace SchemaOrg;
+namespace {{ organization }};
 
 use ArrayAccess;
 use BadMethodCallException;
@@ -8,9 +8,9 @@ use Closure;
 use JsonSerializable;
 use ReflectionClass;
 use ReflectionNamedType;
-use SchemaOrg\Exceptions\InvalidType;
-use SchemaOrg\Exceptions\TypeAlreadyInGraph;
-use SchemaOrg\Exceptions\TypeNotInGraph;
+use {{ organization }}\Exceptions\InvalidType;
+use {{ organization }}\Exceptions\TypeAlreadyInGraph;
+use {{ organization }}\Exceptions\TypeNotInGraph;
 
 /**
 {% for type in types %}

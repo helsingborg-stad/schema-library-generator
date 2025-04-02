@@ -1,15 +1,15 @@
 <?php
 
-namespace SchemaOrg\Tests;
+namespace SchemaOrg\Generated\Tests;
 
 use BadMethodCallException;
 use InvalidArgumentException;
-use SchemaOrg\Brand;
-use SchemaOrg\Graph;
-use SchemaOrg\Organization;
-use SchemaOrg\Product;
-use SchemaOrg\Schema;
-use SchemaOrg\Type;
+use SchemaOrg\Generated\Brand;
+use SchemaOrg\Generated\Graph;
+use SchemaOrg\Generated\Organization;
+use SchemaOrg\Generated\Product;
+use SchemaOrg\Generated\Schema;
+use SchemaOrg\Generated\Type;
 
 it('can render empty', function () {
     $graph = new Graph();

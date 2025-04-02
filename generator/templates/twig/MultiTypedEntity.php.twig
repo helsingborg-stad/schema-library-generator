@@ -1,15 +1,15 @@
 <?php
 
-namespace SchemaOrg;
+namespace {{ organization }};
 
 use BadMethodCallException;
 use Closure;
 use JsonSerializable;
 use ReflectionClass;
 use ReflectionNamedType;
-use SchemaOrg\Exceptions\InvalidType;
-use SchemaOrg\Exceptions\TypeAlreadyInMultiTypedEntity;
-use SchemaOrg\Exceptions\TypeNotInMultiTypedEntity;
+use {{ organization }}\Exceptions\InvalidType;
+use {{ organization }}\Exceptions\TypeAlreadyInMultiTypedEntity;
+use {{ organization }}\Exceptions\TypeNotInMultiTypedEntity;
 
 /**
 {% for type in types %}

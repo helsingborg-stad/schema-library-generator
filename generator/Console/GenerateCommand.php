@@ -18,6 +18,7 @@ class GenerateCommand extends Command
             ->setName('generate')
             ->setDescription('Generate the package code from the schema.org docs')
             ->addArgument('directory', InputArgument::REQUIRED, 'Destination target directory for the generated code')
+            ->addOption('organization', 'o', InputOption::VALUE_REQUIRED, 'Organization name for the generated code, is used in the namespace of the generated code', 'SchemaOrg')
             ->addOption('additionalSources', 'a', InputOption::VALUE_REQUIRED, 'Additional sources to include in the package. Format: "source1:https://example.com/source1.jsonld,source2:https://example.com/source2.jsonld"')
             ->addOption('local', 'l', InputOption::VALUE_NONE, 'Use a cached version of the source');
     }
@@ -34,7 +35,7 @@ class GenerateCommand extends Command
         $localRoot = realpath($localRoot);
         $localRoot = str_replace('\\', '/', $localRoot);
 
-        $generator = new PackageGenerator($localRoot, $input->getArgument('directory'));
+        $generator = new PackageGenerator($localRoot, $input->getArgument('directory'), $input->getOption('organization'));
 
         $definitions = new Definitions($this->getDefinitionSources($input));
 

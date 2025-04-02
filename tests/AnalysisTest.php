@@ -12,7 +12,7 @@ class AnalysisTest extends TestCase
     protected static function getPaths(): array
     {
         return [
-            __DIR__.'/../src',
+            __DIR__.'/../.generated',
         ];
     }
 }

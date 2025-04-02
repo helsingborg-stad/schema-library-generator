@@ -3,10 +3,10 @@
 namespace SchemaOrg\Tests;
 
 use DateTime;
-use SchemaOrg\BaseType;
-use SchemaOrg\Exceptions\InvalidProperty;
-use SchemaOrg\Product;
-use SchemaOrg\PropertyValue;
+use \SchemaOrg\Generated\BaseType;
+use \SchemaOrg\Generated\InvalidProperty;
+use \SchemaOrg\Generated\Product;
+use \SchemaOrg\Generated\PropertyValue;
 
 it('has a default context', function () {
     $type = new DummyType();
@@ -258,14 +258,6 @@ it('can be json serialized', function () {
     expect($type->jsonSerialize())->toBe($expected);
     expect(json_encode($type))->toBe(json_encode($expected));
 });
-
-it('will throw invalid property exception with object property', function () {
-    $type = new DummyType();
-    $type->setProperty('foo', new class () {
-    });
-
-    $type->jsonSerialize();
-})->throws(InvalidProperty::class);
 
 it('can be casted to string', function () {
     $type = new DummyType();

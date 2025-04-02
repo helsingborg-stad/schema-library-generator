@@ -30,14 +30,17 @@ class Filesystem
     /** @var \SchemaOrg\Generator\Writer\Template */
     protected $multiTypedEntityClassTemplate;
 
-    public function __construct(string $root, string $localRoot, private string $targetDirectory)
+    /** @var \SchemaOrg\Generator\Writer\Template[] */
+    protected $staticTemplates;
+
+    public function __construct(string $root, string $localRoot, private string $targetDirectory, private string $organization)
     {
         $adapter         = new LocalFilesystemAdapter($root);
         $this->flysystem = new Flysystem($adapter);
         
         $adapterLocal         = new LocalFilesystemAdapter($localRoot);
         $this->flysystemLocal = new Flysystem($adapterLocal);
-
+        Filters::$organization = $this->organization;
         $this->contractTemplate              = new Template('Contract.php.twig');
         $this->typeTemplate                  = new Template('Type.php.twig');
         $this->builderClassTemplate          = new Template('Schema.php.twig');
@@ -53,17 +56,19 @@ class Filesystem
 
     public function cloneStaticFiles()
     {
-        $files = $this->flysystem->listContents('generator/templates/static', true);
+        $files = $this->flysystem->listContents('generator/templates/twig/static', true);
 
         foreach ($files as $file) {
             if ($file['type'] !== 'file') {
                 continue;
             }
 
-            $this->flysystemLocal->write(
-                str_replace('generator/templates/static', $this->targetDirectory, $file['path']),
-                $this->flysystem->read($file['path'])
-            );
+            $templateName = str_replace('generator/templates/twig', '', $file['path']);
+            $template = new Template($templateName);
+            $fileName = str_replace('generator/templates/twig/static', $this->targetDirectory, $file['path']);
+            $fileName = str_replace('.twig', '', $fileName);
+
+            $this->flysystemLocal->write( $fileName, $template->render(['organization' => $this->organization]) );
         }
     }
 
@@ -71,12 +76,12 @@ class Filesystem
     {
         $this->flysystemLocal->write(
             "{$this->targetDirectory}/Contracts/{$type->className}Contract.php",
-            $this->contractTemplate->render(['type' => $type])
+            $this->contractTemplate->render(['type' => $type, 'organization' => $this->organization])
         );
 
         $this->flysystemLocal->write(
             "{$this->targetDirectory}/{$type->className}.php",
-            $this->typeTemplate->render(['type' => $type])
+            $this->typeTemplate->render(['type' => $type, 'organization' => $this->organization])
         );
     }
 
@@ -84,17 +89,17 @@ class Filesystem
     {
         $this->flysystemLocal->write(
             "{$this->targetDirectory}/Schema.php",
-            $this->builderClassTemplate->render(['types' => $types->toArray()])
+            $this->builderClassTemplate->render(['types' => $types->toArray(), 'organization' => $this->organization])
         );
 
         $this->flysystemLocal->write(
             "{$this->targetDirectory}/Graph.php",
-            $this->graphClassTemplate->render(['types' => $types->toArray()])
+            $this->graphClassTemplate->render(['types' => $types->toArray(), 'organization' => $this->organization])
         );
 
         $this->flysystemLocal->write(
             "{$this->targetDirectory}/MultiTypedEntity.php",
-            $this->multiTypedEntityClassTemplate->render(['types' => $types->toArray()])
+            $this->multiTypedEntityClassTemplate->render(['types' => $types->toArray(), 'organization' => $this->organization])
         );
     }
 }
