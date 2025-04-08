@@ -4,6 +4,7 @@ namespace SchemaOrg\Generator\Console;
 
 use SchemaOrg\Generator\Definitions;
 use SchemaOrg\Generator\PackageGenerator;
+use SchemaOrg\Generator\Source\Source;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -35,9 +36,10 @@ class GenerateCommand extends Command
         $localRoot = realpath($localRoot);
         $localRoot = str_replace('\\', '/', $localRoot);
 
-        $generator = new PackageGenerator($localRoot, $input->getArgument('directory'), $input->getOption('organization'));
-
-        $definitions = new Definitions($this->getDefinitionSources($input));
+        $sources = $this->getDefinitionSources($input);
+        $definitions = new Definitions($sources);
+        $generator = new PackageGenerator($localRoot, $input->getArgument('directory'), $input->getOption('organization'), $sources);
+        
 
         if (! $input->getOption('local')) {
             $definitions->preload();
@@ -50,16 +52,22 @@ class GenerateCommand extends Command
         return 0;
     }
 
+    /**
+     * Get the definition sources from the input options.
+     * 
+     * @param  \Symfony\Component\Console\Input\InputInterface  $input
+     * @return \SchemaOrg\Generator\Source\Source[]
+     */
     private function getDefinitionSources(InputInterface $input)
     {
-        $sources           = [ 'core' => 'https://raw.githubusercontent.com/schemaorg/schemaorg/main/data/releases/28.1/schemaorg-all-https.jsonld'];
+        $sources = [new Source('schema', 'https://raw.githubusercontent.com/schemaorg/schemaorg/main/data/releases/28.1/schemaorg-all-https.jsonld', 'https://schema.org')];
         $additionalSources = $input->getOption('additionalSources');
 
         if ($additionalSources) {
             $additionalSources = explode(',', $additionalSources);
             foreach ($additionalSources as $source) {
                 $source              = explode(':', $source, 2);
-                $sources[$source[0]] = $source[1];
+                $sources[] = new Source($source[0], $source[1], $source[1]);
             }
         }
 

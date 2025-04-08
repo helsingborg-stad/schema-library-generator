@@ -1,0 +1,23 @@
+{
+    "@context": {
+        "schema": "https://schema.org/",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "test": "https://test/test.jsonld"
+    },
+    "@graph": [
+        {
+            "@id": "test:testProperty",
+            "@type": "rdf:Property",
+            "rdfs:label": "testProperty",
+            "rdfs:comment": "Test property",
+            "schema:domainIncludes": {
+                "@id": "schema:Thing"
+            },
+            "schema:rangeIncludes": {
+                "@id": "schema:Text"
+            }
+        }
+    ]
+}

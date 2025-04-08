@@ -50,6 +50,10 @@ class Template
         $twig->addFilter(
             new TwigFilter('fixLink', [Filters::class, 'fixLink'])
         );
+        
+        $twig->addFilter(
+            new TwigFilter('context', [Filters::class, 'context'])
+        );
 
         return $twig;
     }
