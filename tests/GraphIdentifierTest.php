@@ -1,10 +1,10 @@
 <?php
 
-namespace SchemaOrg\Generated\Tests;
+namespace GeneratedDefault\Tests;
 
-use SchemaOrg\Generated\Graph;
-use SchemaOrg\Generated\Organization;
-use SchemaOrg\Generated\Schema;
+use GeneratedDefault\Graph;
+use GeneratedDefault\Organization;
+use GeneratedDefault\Schema;
 
 it('can manipulate item', function () {
     $graph = new Graph();

@@ -33,7 +33,22 @@ class Filesystem
     /** @var \SchemaOrg\Generator\Writer\Template[] */
     protected $staticTemplates;
 
-    public function __construct(string $root, string $localRoot, private string $targetDirectory, private string $organization)
+    /**
+     * Constructor.
+     * 
+     * @param  string  $root
+     * @param  string  $localRoot
+     * @param  string  $targetDirectory
+     * @param  string  $organization
+     * @param  \SchemaOrg\Generator\Source\SourceInterface[]  $sources
+     */
+    public function __construct(
+        string $root,
+        string $localRoot,
+        private string $targetDirectory,
+        private string $organization,
+        private array $sources
+    )
     {
         $adapter         = new LocalFilesystemAdapter($root);
         $this->flysystem = new Flysystem($adapter);
@@ -41,6 +56,7 @@ class Filesystem
         $adapterLocal         = new LocalFilesystemAdapter($localRoot);
         $this->flysystemLocal = new Flysystem($adapterLocal);
         Filters::$organization = $this->organization;
+        Filters::$sources = $this->sources;
         $this->contractTemplate              = new Template('Contract.php.twig');
         $this->typeTemplate                  = new Template('Type.php.twig');
         $this->builderClassTemplate          = new Template('Schema.php.twig');

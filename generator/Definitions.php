@@ -3,8 +3,8 @@
 namespace SchemaOrg\Generator;
 
 use Illuminate\Support\Collection;
-use OutOfBoundsException;
 use SchemaOrg\Generator\Parser\JsonLdParser;
+use SchemaOrg\Generator\Source\Source;
 
 class Definitions
 {
@@ -12,6 +12,9 @@ class Definitions
 
     protected string $tempDir = __DIR__ . '/temp';
 
+    /**
+     * @param  \SchemaOrgs\Generator\Source\SourceInterface[] $sources
+     */
     public function __construct(array $sources)
     {
         $this->sources = $sources;
@@ -19,8 +22,8 @@ class Definitions
 
     public function preload(): void
     {
-        foreach ($this->sources as $sourceId => $sourcePath) {
-            $this->loadSource($sourceId, false);
+        foreach ($this->sources as $source) {
+            $this->loadSource($source, false);
         }
     }
 
@@ -28,26 +31,22 @@ class Definitions
     {
         $items = [];
 
-        foreach (array_keys($this->sources) as $source) {
+        foreach ($this->sources as $source) {
             $items = [...$items, ...(new JsonLdParser($this->loadSource($source)))->filter($selector)->all()];
         }
 
         return new Collection($items);
     }
 
-    protected function loadSource(string $sourceId, bool $fromCache = true): string
+    protected function loadSource(Source $source, bool $fromCache = true): string
     {
-        if (! isset($this->sources[$sourceId])) {
-            throw new OutOfBoundsException("Source `{$sourceId}` doesn't exist");
-        }
-
-        $cachePath = $this->tempDir . '/' . $sourceId . '.jsonld';
+        $cachePath = $this->tempDir . '/' . $source->getName() . '.jsonld';
 
         if ($fromCache && file_exists($cachePath)) {
             return file_get_contents($cachePath);
         }
 
-        $jsonLd = file_get_contents($this->sources[$sourceId]);
+        $jsonLd = file_get_contents($source->getSourceFile());
 
         file_put_contents($cachePath, $jsonLd);
 

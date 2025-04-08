@@ -7,7 +7,12 @@ use SchemaOrg\Generator\Writer\Filesystem;
 
 class PackageGenerator
 {
-    public function __construct(private string $localRoot, private string $targetDirectory, private string $organization)
+    public function __construct(
+        private string $localRoot,
+        private string $targetDirectory,
+        private string $organization,
+        private array $contexts
+    )
     {
     }
 
@@ -15,7 +20,7 @@ class PackageGenerator
     {
         $types = (new DefinitionParser())->parse($definitions);
 
-        $filesystem = new Filesystem(__DIR__ . '/..', $this->localRoot, $this->targetDirectory, $this->organization);
+        $filesystem = new Filesystem(__DIR__ . '/..', $this->localRoot, $this->targetDirectory, $this->organization, $this->contexts);
 
         $filesystem->clear();
 

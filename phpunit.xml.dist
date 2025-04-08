@@ -19,6 +19,7 @@
     <coverage>
         <include>
             <directory suffix=".php">src/Exceptions</directory>
+            <directory suffix=".php">generator/Source</directory>
             <file>./src/BaseType.php</file>
             <file>./src/Type.php</file>
             <file>./src/Graph.php</file>

@@ -5,6 +5,10 @@ namespace SchemaOrg\Generator\Writer;
 class Filters
 {
     public static string $organization = 'SchemaOrg';
+    /**
+     * @var \SchemaOrg\Generator\Source\SourceInterface[]
+     */
+    public static array $sources = [];
 
     public static function doc($text, array $options = []): string
     {
@@ -74,5 +78,22 @@ class Filters
         }
 
         return str_replace('schema:', 'https://schema.org/', $input);
+    }
+
+    public static function context(): string|array {
+
+        if( count(self::$sources) > 1 ) {
+            $contexts = '[';
+
+            foreach(self::$sources as $source) {
+                $contexts .= '"' . $source->getName() . '" => "' . $source->getLocation() . '", ';
+            }
+            
+            $contexts .= ']';
+
+            return $contexts;
+        }
+
+        return '"' . reset(self::$sources)->getLocation() . '"';
     }
 }

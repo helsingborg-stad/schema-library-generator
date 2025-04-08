@@ -3,10 +3,10 @@
 namespace SchemaOrg\Tests;
 
 use DateTime;
-use \SchemaOrg\Generated\BaseType;
-use \SchemaOrg\Generated\InvalidProperty;
-use \SchemaOrg\Generated\Product;
-use \SchemaOrg\Generated\PropertyValue;
+use \GeneratedDefault\BaseType;
+use \GeneratedDefault\InvalidProperty;
+use \GeneratedDefault\Product;
+use \GeneratedDefault\PropertyValue;
 
 it('has a default context', function () {
     $type = new DummyType();
@@ -324,7 +324,25 @@ it('can reference type by identifier', function () {
     expect($type2->toArray())->toBe($expected);
 });
 
+it('contains multiple contexts if generated from multiple sources', function() {
+    $type = new DummyTypeUsingMultipleContexts();
+
+    $expected = [
+        '@context' => [
+            'schema' => 'https://schema.org',
+            'test' => './tests/fixtures/additionalSource.jsonld',
+        ],
+        '@type' => 'DummyTypeUsingMultipleContexts',
+    ];
+
+    expect($type->toArray())->toBe($expected);
+});
+
 class DummyType extends BaseType
+{
+}
+
+class DummyTypeUsingMultipleContexts extends \GeneratedMultipleContexts\BaseType
 {
 }
 
